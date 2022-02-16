@@ -7,6 +7,7 @@ variable name_prefix {}
 variable aws_lb_arn {}
 variable aws_region {}
 variable ecr_region {}
+variable environment {}
 variable ecr_account_id {}
 variable standard_tags {}
 variable security_groups {}
