@@ -33,7 +33,6 @@ module billing {
     account_id              = var.account_id
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
-    domain_name             = var.domain_name
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     environment             = var.environment
@@ -60,7 +59,6 @@ module marketdata {
     account_id              = var.account_id
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
-    domain_name             = var.domain_name
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     environment             = var.environment
@@ -87,7 +85,6 @@ module nego {
     account_id              = var.account_id
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
-    domain_name             = var.domain_name
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     environment             = var.environment
