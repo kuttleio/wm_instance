@@ -22,7 +22,7 @@ module billing {
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
-    capacity_provider_name  = module.ecs_cluster.capacity_provider_name
+    capacity_provider_name  = module.ecs_cluster.cluster_capacity_provider
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
@@ -48,7 +48,7 @@ module marketdata {
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
-    capacity_provider_name  = module.ecs_cluster.capacity_provider_name
+    capacity_provider_name  = module.ecs_cluster.cluster_capacity_provider
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
@@ -74,7 +74,7 @@ module nego {
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
-    capacity_provider_name  = module.ecs_cluster.capacity_provider_name
+    capacity_provider_name  = module.ecs_cluster.cluster_capacity_provider
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups

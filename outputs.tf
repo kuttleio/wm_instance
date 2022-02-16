@@ -6,7 +6,7 @@ output "cluster_arn" {
     description = "ECS Cluster ARN"
     value       = module.ecs_cluster.cluster_arn
 }
-output "capacity_provider_name" {
+output "cluster_capacity_provider" {
     description = "ECS Cluster Capacity Provider"
     value       = module.ecs_cluster.cluster_capacity_provider
 }
