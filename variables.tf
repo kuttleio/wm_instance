@@ -1,6 +1,6 @@
 variable vpc_id {}
-variable account_id {}
 variable subnets {}
+variable account_id {}
 variable logdna_key {}
 variable domain_name {}
 variable name_prefix {}
@@ -10,7 +10,6 @@ variable ecr_region {}
 variable ecr_account_id {}
 variable standard_tags {}
 variable security_groups {}
-variable execution_role_arn {}
 variable container_insights {}
 variable aws_lb_certificate_arn {}
 
