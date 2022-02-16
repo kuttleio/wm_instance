@@ -8,7 +8,6 @@ module "ecs_cluster" {
     instance_types            = var.instance_types
     ebs_disks                 = var.ebs_disks
     account                   = var.clp_account
-    aws_region                = var.clp_region
     key_name                  = var.key_name
     cluster_sg                = var.subnets # var.cluster_sg
     ecs_subnet                = var.ecs_subnets
