@@ -2,7 +2,6 @@ variable vpc_id {}
 variable account {}
 variable account_id {}
 variable subnets {}
-variable image_name {}
 variable logdna_key {}
 variable domain_name {}
 variable name_prefix {}
@@ -22,3 +21,5 @@ variable cluster_sg {}
 variable ecs_subnet {}
 variable ebs_disks {}
 variable key_name {}
+
+variable service_config {}
