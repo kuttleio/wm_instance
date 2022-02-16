@@ -25,7 +25,6 @@ module billing {
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
     capacity_provider_name  = module.ecs_cluster.capacity_provider_name
-    execution_role_arn      = var.terraform_remote_state.iam.outputs.arn
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
@@ -53,7 +52,6 @@ module marketdata {
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
     capacity_provider_name  = module.ecs_cluster.capacity_provider_name
-    execution_role_arn      = var.terraform_remote_state.iam.outputs.arn
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
@@ -81,7 +79,6 @@ module nego {
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
     capacity_provider_name  = module.ecs_cluster.capacity_provider_name
-    execution_role_arn      = var.terraform_remote_state.iam.outputs.arn
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
