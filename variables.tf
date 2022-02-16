@@ -1,0 +1,14 @@
+variable vpc_id {}
+variable account_id {}
+variable subnets {}
+variable image_name {}
+variable logdna_key {}
+variable domain_name {}
+variable name_prefix {}
+variable aws_lb_arn {}
+variable aws_lb_out_port {}
+variable ecr_region {}
+variable ecr_account_id {}
+variable security_groups {}
+variable execution_role_arn {}
+variable aws_lb_certificate_arn {}
