@@ -1,5 +1,4 @@
 variable vpc_id {}
-variable account {}
 variable account_id {}
 variable subnets {}
 variable logdna_key {}
