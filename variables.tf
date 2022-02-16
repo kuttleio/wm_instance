@@ -17,6 +17,7 @@ variable container_insights {}
 variable aws_lb_certificate_arn {}
 
 variable instance_types {}
+variable wm_instance {}
 variable cluster_sg {}
 variable ecs_subnet {}
 variable ebs_disks {}
