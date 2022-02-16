@@ -33,6 +33,7 @@ module billing {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.billing.service_name
     image_name              = var.service_config.billing.image_name
@@ -59,6 +60,7 @@ module marketdata {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.marketdata.service_name
     image_name              = var.service_config.marketdata.image_name
@@ -85,6 +87,7 @@ module nego {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
+    domain_name             = var.domain_name    
     environment             = var.environment
     service_name            = var.service_config.nego.service_name
     image_name              = var.service_config.nego.image_name
