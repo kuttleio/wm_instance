@@ -7,7 +7,6 @@ module "ecs_cluster" {
     container_insights        = var.container_insights
     instance_types            = var.instance_types
     ebs_disks                 = var.ebs_disks
-    account                   = var.clp_account
     key_name                  = var.key_name
     cluster_sg                = var.subnets # var.cluster_sg
     ecs_subnet                = var.ecs_subnets
