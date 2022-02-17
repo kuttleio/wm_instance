@@ -15,6 +15,12 @@ output cluster_capacity_provider {
 output server_port {
     value = var.service_config.server.port
 }
+output admin_port {
+    value = var.service_config.admin.port
+}
+output client_port {
+    value = var.service_config.client.port
+}
 output billing_port {
     value = var.service_config.billing.port
 }
