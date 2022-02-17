@@ -28,7 +28,6 @@ module billing {
     security_groups         = var.security_groups
     subnets                 = var.subnets
     logdna_key              = var.logdna_key
-    account_id              = var.account_id
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
@@ -55,7 +54,6 @@ module marketdata {
     security_groups         = var.security_groups
     subnets                 = var.subnets
     logdna_key              = var.logdna_key
-    account_id              = var.account_id
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
@@ -82,7 +80,6 @@ module nego {
     security_groups         = var.security_groups
     subnets                 = var.subnets
     logdna_key              = var.logdna_key
-    account_id              = var.account_id
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
