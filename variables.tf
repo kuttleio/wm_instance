@@ -1,5 +1,6 @@
 variable vpc_id {}
 variable subnets {}
+variable account_id {}
 variable logdna_key {}
 variable name_prefix {}
 variable aws_lb_arn {}
