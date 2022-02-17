@@ -8,7 +8,7 @@ module "ecs_cluster" {
     instance_types            = var.instance_types
     ebs_disks                 = var.ebs_disks
     key_name                  = var.key_name
-    cluster_sg                = var.subnets # var.cluster_sg
+    cluster_sg                = var.cluster_sg
     ecs_subnet                = var.ecs_subnets
     standard_tags             = var.standard_tags
 }
