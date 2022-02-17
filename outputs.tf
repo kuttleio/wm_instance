@@ -1,62 +1,62 @@
-output "cluster_name" {
+output cluster_name {
     description = "ECS Cluster Name"
     value       = module.ecs_cluster.cluster_name
 }
-output "cluster_arn" {
+output cluster_arn {
     description = "ECS Cluster ARN"
     value       = module.ecs_cluster.cluster_arn
 }
-output "cluster_capacity_provider" {
+output cluster_capacity_provider {
     description = "ECS Cluster Capacity Provider"
     value       = module.ecs_cluster.cluster_capacity_provider
 }
 
 
-output server {
+output server_port {
     value = var.service_config.server.port
 }
-output billing {
+output billing_port {
     value = var.service_config.billing.port
 }
-output market_stats_collector {
+output market_stats_collector_port {
     value = var.service_config.market_stats_collector.port
 }
-output marketdata {
+output marketdata_port {
     value = var.service_config.marketdata.port
 }
-output match_negotiations {
+output match_negotiations_port {
     value = var.service_config.match_negotiations.port
 }
-output matching {
+output matching_port {
     value = var.service_config.matching.port
 }
-output nego {
+output nego_port {
     value = var.service_config.nego.port
 }
-output nego_client {
+output nego_client_port {
     value = var.service_config.nego_client.port
 }
-output optimizer {
+output optimizer_port {
     value = var.service_config.optimizer.port
 }
-output other {
+output other_port {
     value = var.service_config.other.port
 }
-output positions {
+output positions_port {
     value = var.service_config.positions.port
 }
-output refinitiv_ingestion {
+output refinitiv_ingestion_port {
     value = var.service_config.refinitiv_ingestion.port
 }
-output requests {
+output requests_port {
     value = var.service_config.requests.port
 }
-output sales {
+output sales_port {
     value = var.service_config.sales.port
 }
-output speech {
+output speech_port {
     value = var.service_config.speech.port
 }
-output uploader {
+output uploader_port {
     value = var.service_config.uploader.port
 }
