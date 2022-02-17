@@ -39,6 +39,52 @@ module server {
     service_port            = var.service_config.server.port
 }
 
+module admin {
+    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    name_prefix             = var.name_prefix
+    standard_tags           = var.standard_tags
+    cluster_name            = module.ecs_cluster.cluster_name
+    capacity_provider_name  = module.ecs_cluster.cluster_capacity_provider
+    wm_instance             = var.wm_instance
+    vpc_id                  = var.vpc_id
+    security_groups         = var.security_groups
+    subnets                 = var.subnets
+    logdna_key              = var.logdna_key
+    ecr_account_id          = var.account_id
+    ecr_region              = var.ecr_region
+    aws_lb_arn              = var.aws_lb_arn
+    aws_lb_certificate_arn  = var.aws_lb_certificate_arn
+    domain_name             = var.domain_name    
+    environment             = var.environment
+    service_name            = var.service_config.admin.service_name
+    image_name              = var.service_config.admin.image_name
+    image_version           = var.service_config.admin.image_version
+    service_port            = var.service_config.admin.port
+}
+
+module client {
+    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    name_prefix             = var.name_prefix
+    standard_tags           = var.standard_tags
+    cluster_name            = module.ecs_cluster.cluster_name
+    capacity_provider_name  = module.ecs_cluster.cluster_capacity_provider
+    wm_instance             = var.wm_instance
+    vpc_id                  = var.vpc_id
+    security_groups         = var.security_groups
+    subnets                 = var.subnets
+    logdna_key              = var.logdna_key
+    ecr_account_id          = var.account_id
+    ecr_region              = var.ecr_region
+    aws_lb_arn              = var.aws_lb_arn
+    aws_lb_certificate_arn  = var.aws_lb_certificate_arn
+    domain_name             = var.domain_name    
+    environment             = var.environment
+    service_name            = var.service_config.client.service_name
+    image_name              = var.service_config.client.image_name
+    image_version           = var.service_config.client.image_version
+    service_port            = var.service_config.client.port
+}
+
 module billing {
     source                  = "github.com/zbs-nu/aws_ecs_service//"
     name_prefix             = var.name_prefix
