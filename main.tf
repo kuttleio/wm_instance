@@ -2,7 +2,7 @@
 #    ECS Cluster
 # ---------------------------------------------------
 module ecs_cluster {
-    source                    = "github.com/zbs-nu/aws_ecs_cluster//?ref=1.0.3"
+    source                    = "github.com/zbs-nu/aws_ecs_cluster//?ref=1.0.0"
     cluster_name              = "${var.name_prefix}-${var.wm_instance}"
     container_insights        = var.container_insights
     instance_types            = var.instance_types
