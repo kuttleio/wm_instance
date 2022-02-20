@@ -122,7 +122,7 @@ resource aws_lb_listener_rule block_header_client {
 
 
 resource aws_route53_record main {
-    zone_id = var.zone_id
+    zone_id = var.zone_id.zone_id
     name    = "${var.name_prefix}-${var.wm_instance}."
     type    = "CNAME"
     ttl     = 300
