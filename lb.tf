@@ -5,7 +5,7 @@ resource aws_lb public {
     subnets            = var.public_subnets
 
     access_logs {
-        bucket  = ""
+        bucket  = var.access_logs_s3_bucket
         prefix  = "${var.wm_instance}_lb"
         enabled = true
     }

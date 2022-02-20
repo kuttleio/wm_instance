@@ -21,4 +21,5 @@ variable instance_types {}
 variable security_groups {}
 variable private_subnets {}
 variable container_insights {}
+variable access_logs_s3_bucket {}
 variable aws_lb_certificate_arn {}
