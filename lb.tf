@@ -13,6 +13,22 @@ resource "aws_lb" "public" {
     tags = merge(var.standard_tags, tomap({ Name = "Public-${var.name_prefix}-${var.wm_instance}" }))
 }
 
+resource "aws_lb_listener" "public_server" {
+    load_balancer_arn = aws_lb.public.arn
+    port              = var.service_config.server.internal_port
+    protocol          = "HTTP"
+    depends_on        = [aws_lb.public]
+
+    default_action {
+        type = "redirect"
+
+        redirect {
+            port        = var.service_config.server.external_port
+            protocol    = "HTTPS"
+            status_code = "HTTP_301"
+        }
+    }
+}
 resource "aws_lb_listener" "public_admin" {
     load_balancer_arn = aws_lb.public.arn
     port              = var.service_config.admin.internal_port
@@ -23,7 +39,7 @@ resource "aws_lb_listener" "public_admin" {
         type = "redirect"
 
         redirect {
-            port        = var.external_port
+            port        = var.service_config.admin.external_port
             protocol    = "HTTPS"
             status_code = "HTTP_301"
         }
@@ -39,7 +55,7 @@ resource "aws_lb_listener" "public_client" {
         type = "redirect"
 
         redirect {
-            port        = var.external_port
+            port        = var.service_config.client.external_port
             protocol    = "HTTPS"
             status_code = "HTTP_301"
         }
@@ -84,7 +100,6 @@ resource "aws_lb_listener_rule" "block_header_admin" {
         }
     }
 }
-
 resource "aws_lb_listener_rule" "block_header_client" {
     listener_arn = aws_lb_listener.public_client.arn
     priority = 100
