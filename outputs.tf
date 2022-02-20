@@ -11,15 +11,21 @@ output cluster_capacity_provider {
     value       = module.ecs_cluster.cluster_capacity_provider
 }
 
+output dns_name {
+    value = aws_route53_record.main.name
+}
+output fqdn {
+    value = aws_route53_record.main.fqdn
+}
 
 output server_port {
-    value = var.service_config.server.port
+    value = var.service_config.server.internal_port
 }
 output admin_port {
-    value = var.service_config.admin.port
+    value = var.service_config.admin.internal_port
 }
 output client_port {
-    value = var.service_config.client.port
+    value = var.service_config.client.internal_port
 }
 output billing_port {
     value = var.service_config.billing.port

@@ -1,4 +1,4 @@
-resource "aws_lb" "public" {
+resource aws_lb public {
     name               = "${var.name_prefix}-${var.wm_instance}-Public-LB"
     load_balancer_type = "application"
     security_groups    = var.cluster_sg
@@ -13,7 +13,7 @@ resource "aws_lb" "public" {
     tags = merge(var.standard_tags, tomap({ Name = "Public-${var.name_prefix}-${var.wm_instance}" }))
 }
 
-resource "aws_lb_listener" "public_server" {
+resource aws_lb_listener public_server {
     load_balancer_arn = aws_lb.public.arn
     port              = var.service_config.server.internal_port
     protocol          = "HTTP"
@@ -29,7 +29,7 @@ resource "aws_lb_listener" "public_server" {
         }
     }
 }
-resource "aws_lb_listener" "public_admin" {
+resource aws_lb_listener public_admin {
     load_balancer_arn = aws_lb.public.arn
     port              = var.service_config.admin.internal_port
     protocol          = "HTTP"
@@ -45,7 +45,7 @@ resource "aws_lb_listener" "public_admin" {
         }
     }
 }
-resource "aws_lb_listener" "public_client" {
+resource aws_lb_listener public_client {
     load_balancer_arn = aws_lb.public.arn
     port              = var.service_config.client.internal_port
     protocol          = "HTTP"
@@ -62,7 +62,7 @@ resource "aws_lb_listener" "public_client" {
     }
 }
 
-resource "aws_lb_listener_rule" "block_header_server" {
+resource aws_lb_listener_rule block_header_server {
     listener_arn = aws_lb_listener.public_server.arn
     priority = 100
 
@@ -81,7 +81,7 @@ resource "aws_lb_listener_rule" "block_header_server" {
         }
     }
 }
-resource "aws_lb_listener_rule" "block_header_admin" {
+resource aws_lb_listener_rule block_header_admin {
     listener_arn = aws_lb_listener.public_admin.arn
     priority = 100
 
@@ -100,7 +100,7 @@ resource "aws_lb_listener_rule" "block_header_admin" {
         }
     }
 }
-resource "aws_lb_listener_rule" "block_header_client" {
+resource aws_lb_listener_rule block_header_client {
     listener_arn = aws_lb_listener.public_client.arn
     priority = 100
 
@@ -121,7 +121,7 @@ resource "aws_lb_listener_rule" "block_header_client" {
 }
 
 
-resource "aws_route53_record" "main" {
+resource aws_route53_record main {
     zone_id = var.zone_id
     name    = "${var.name_prefix}-${var.wm_instance}."
     type    = "CNAME"
