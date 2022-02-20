@@ -1,7 +1,7 @@
 resource "aws_lb" "public" {
     name               = "${var.name_prefix}-${var.wm_instance}-Public-LB"
     load_balancer_type = "application"
-    security_groups    = var.public_lb_security_groups
+    security_groups    = var.cluster_sg
     subnets            = var.public_subnets
 
     access_logs {
