@@ -1,15 +1,15 @@
 # ---------------------------------------------------
 #    ECS Cluster
 # ---------------------------------------------------
-module "ecs_cluster" {
-    source                    = "github.com/zbs-nu/aws_ecs_cluster//"
+module ecs_cluster {
+    source                    = "github.com/zbs-nu/aws_ecs_cluster//?ref=1.0.0"
     cluster_name              = "${var.name_prefix}-${var.wm_instance}"
     container_insights        = var.container_insights
     instance_types            = var.instance_types
     ebs_disks                 = var.ebs_disks
     key_name                  = var.key_name
     cluster_sg                = var.cluster_sg
-    ecs_subnet                = var.ecs_subnets
+    ecs_subnet                = var.private_subnets
     standard_tags             = var.standard_tags
 }
 
@@ -17,7 +17,7 @@ module "ecs_cluster" {
 #    Services
 # ---------------------------------------------------
 module server {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -25,7 +25,7 @@ module server {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -36,11 +36,12 @@ module server {
     service_name            = var.service_config.server.service_name
     image_name              = var.service_config.server.image_name
     image_version           = var.service_config.server.image_version
-    service_port            = var.service_config.server.port
+    service_port            = var.service_config.server.internal_port
+    aws_lb_out_port         = var.service_config.server.external_port
 }
 
 module admin {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -48,7 +49,7 @@ module admin {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -59,11 +60,12 @@ module admin {
     service_name            = var.service_config.admin.service_name
     image_name              = var.service_config.admin.image_name
     image_version           = var.service_config.admin.image_version
-    service_port            = var.service_config.admin.port
+    service_port            = var.service_config.admin.internal_port
+    aws_lb_out_port         = var.service_config.admin.external_port
 }
 
 module client {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -71,7 +73,7 @@ module client {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -82,11 +84,13 @@ module client {
     service_name            = var.service_config.client.service_name
     image_name              = var.service_config.client.image_name
     image_version           = var.service_config.client.image_version
-    service_port            = var.service_config.client.port
+    service_port            = var.service_config.client.internal_port
+    aws_lb_out_port         = var.service_config.client.external_port
+
 }
 
 module billing {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -94,7 +98,7 @@ module billing {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -109,7 +113,7 @@ module billing {
 }
 
 module market_stats_collector {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -117,7 +121,7 @@ module market_stats_collector {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -132,7 +136,7 @@ module market_stats_collector {
 }
 
 module marketdata {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -140,7 +144,7 @@ module marketdata {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -155,7 +159,7 @@ module marketdata {
 }
 
 module match_negotiations {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -163,7 +167,7 @@ module match_negotiations {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -178,7 +182,7 @@ module match_negotiations {
 }
 
 module matching {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -186,7 +190,7 @@ module matching {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -201,7 +205,7 @@ module matching {
 }
 
 module nego {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -209,7 +213,7 @@ module nego {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -224,7 +228,7 @@ module nego {
 }
 
 module nego_client {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -232,7 +236,7 @@ module nego_client {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -247,7 +251,7 @@ module nego_client {
 }
 
 module optimizer {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -255,7 +259,7 @@ module optimizer {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -270,7 +274,7 @@ module optimizer {
 }
 
 module other {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -278,7 +282,7 @@ module other {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -293,7 +297,7 @@ module other {
 }
 
 module positions {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -301,7 +305,7 @@ module positions {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -316,7 +320,7 @@ module positions {
 }
 
 module refinitiv_ingestion {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -324,7 +328,7 @@ module refinitiv_ingestion {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -339,7 +343,7 @@ module refinitiv_ingestion {
 }
 
 module requests {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -347,7 +351,7 @@ module requests {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -362,7 +366,7 @@ module requests {
 }
 
 module sales {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -370,7 +374,7 @@ module sales {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -385,7 +389,7 @@ module sales {
 }
 
 module speech {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -393,7 +397,7 @@ module speech {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
@@ -408,7 +412,7 @@ module speech {
 }
 
 module uploader {
-    source                  = "github.com/zbs-nu/aws_ecs_service//"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -416,7 +420,7 @@ module uploader {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
