@@ -22,4 +22,3 @@ variable security_groups {}
 variable private_subnets {}
 variable container_insights {}
 variable aws_lb_certificate_arn {}
-variable public_lb_security_groups {}
