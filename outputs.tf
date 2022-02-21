@@ -19,13 +19,13 @@ output fqdn {
 }
 
 output server_port {
-    value = var.service_config.server.internal_port
+    value = var.service_config.server.external_port
 }
 output admin_port {
-    value = var.service_config.admin.internal_port
+    value = var.service_config.admin.external_port
 }
 output client_port {
-    value = var.service_config.client.internal_port
+    value = var.service_config.client.external_port
 }
 output billing_port {
     value = var.service_config.billing.port
