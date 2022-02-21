@@ -23,3 +23,8 @@ variable private_subnets {}
 variable container_insights {}
 variable access_logs_s3_bucket {}
 variable aws_lb_certificate_arn {}
+
+variable desired_count {
+    type    = number
+    default = 1
+}

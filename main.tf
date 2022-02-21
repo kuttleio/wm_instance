@@ -33,6 +33,7 @@ module server {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.server.service_name
     image_name              = var.service_config.server.image_name
     image_version           = var.service_config.server.image_version
@@ -57,6 +58,7 @@ module admin {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.admin.service_name
     image_name              = var.service_config.admin.image_name
     image_version           = var.service_config.admin.image_version
@@ -81,6 +83,7 @@ module client {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.client.service_name
     image_name              = var.service_config.client.image_name
     image_version           = var.service_config.client.image_version
@@ -106,6 +109,7 @@ module billing {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.billing.service_name
     image_name              = var.service_config.billing.image_name
     image_version           = var.service_config.billing.image_version
@@ -129,6 +133,7 @@ module market_stats_collector {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.market_stats_collector.service_name
     image_name              = var.service_config.market_stats_collector.image_name
     image_version           = var.service_config.market_stats_collector.image_version
@@ -152,6 +157,7 @@ module marketdata {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.marketdata.service_name
     image_name              = var.service_config.marketdata.image_name
     image_version           = var.service_config.marketdata.image_version
@@ -175,6 +181,7 @@ module match_negotiations {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.match_negotiations.service_name
     image_name              = var.service_config.match_negotiations.image_name
     image_version           = var.service_config.match_negotiations.image_version
@@ -198,6 +205,7 @@ module matching {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.matching.service_name
     image_name              = var.service_config.matching.image_name
     image_version           = var.service_config.matching.image_version
@@ -221,6 +229,7 @@ module nego {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.nego.service_name
     image_name              = var.service_config.nego.image_name
     image_version           = var.service_config.nego.image_version
@@ -244,6 +253,7 @@ module nego_client {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.nego_client.service_name
     image_name              = var.service_config.nego_client.image_name
     image_version           = var.service_config.nego_client.image_version
@@ -267,6 +277,7 @@ module optimizer {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.optimizer.service_name
     image_name              = var.service_config.optimizer.image_name
     image_version           = var.service_config.optimizer.image_version
@@ -290,6 +301,7 @@ module other {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.other.service_name
     image_name              = var.service_config.other.image_name
     image_version           = var.service_config.other.image_version
@@ -313,6 +325,7 @@ module positions {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.positions.service_name
     image_name              = var.service_config.positions.image_name
     image_version           = var.service_config.positions.image_version
@@ -336,6 +349,7 @@ module refinitiv_ingestion {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.refinitiv_ingestion.service_name
     image_name              = var.service_config.refinitiv_ingestion.image_name
     image_version           = var.service_config.refinitiv_ingestion.image_version
@@ -359,6 +373,7 @@ module requests {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.requests.service_name
     image_name              = var.service_config.requests.image_name
     image_version           = var.service_config.requests.image_version
@@ -382,6 +397,7 @@ module sales {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.sales.service_name
     image_name              = var.service_config.sales.image_name
     image_version           = var.service_config.sales.image_version
@@ -405,6 +421,7 @@ module speech {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.speech.service_name
     image_name              = var.service_config.speech.image_name
     image_version           = var.service_config.speech.image_version
@@ -428,6 +445,7 @@ module uploader {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
+    desired_count           = var.desired_count
     service_name            = var.service_config.uploader.service_name
     image_name              = var.service_config.uploader.image_name
     image_version           = var.service_config.uploader.image_version
