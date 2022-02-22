@@ -17,7 +17,7 @@ module ecs_cluster {
 #    Services
 # ---------------------------------------------------
 module server {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3"""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -31,8 +31,9 @@ module server {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
+    public                  = true
     service_name            = var.service_config.server.service_name
     image_name              = var.service_config.server.image_name
     image_version           = var.service_config.server.image_version
@@ -41,7 +42,7 @@ module server {
 }
 
 module admin {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -55,8 +56,9 @@ module admin {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
+    public                  = true
     service_name            = var.service_config.admin.service_name
     image_name              = var.service_config.admin.image_name
     image_version           = var.service_config.admin.image_version
@@ -65,7 +67,7 @@ module admin {
 }
 
 module client {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -79,8 +81,9 @@ module client {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
+    public                  = true
     service_name            = var.service_config.client.service_name
     image_name              = var.service_config.client.image_name
     image_version           = var.service_config.client.image_version
@@ -90,7 +93,7 @@ module client {
 }
 
 module billing {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -104,7 +107,7 @@ module billing {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.billing.service_name
     image_name              = var.service_config.billing.image_name
@@ -113,7 +116,7 @@ module billing {
 }
 
 module market_stats_collector {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -127,7 +130,7 @@ module market_stats_collector {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.market_stats_collector.service_name
     image_name              = var.service_config.market_stats_collector.image_name
@@ -136,7 +139,7 @@ module market_stats_collector {
 }
 
 module marketdata {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -150,7 +153,7 @@ module marketdata {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.marketdata.service_name
     image_name              = var.service_config.marketdata.image_name
@@ -159,7 +162,7 @@ module marketdata {
 }
 
 module match_negotiations {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -173,7 +176,7 @@ module match_negotiations {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.match_negotiations.service_name
     image_name              = var.service_config.match_negotiations.image_name
@@ -182,7 +185,7 @@ module match_negotiations {
 }
 
 module matching {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -196,7 +199,7 @@ module matching {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.matching.service_name
     image_name              = var.service_config.matching.image_name
@@ -205,7 +208,7 @@ module matching {
 }
 
 module nego {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -219,7 +222,7 @@ module nego {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.nego.service_name
     image_name              = var.service_config.nego.image_name
@@ -228,7 +231,7 @@ module nego {
 }
 
 module nego_client {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -242,7 +245,7 @@ module nego_client {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.nego_client.service_name
     image_name              = var.service_config.nego_client.image_name
@@ -251,7 +254,7 @@ module nego_client {
 }
 
 module optimizer {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -265,7 +268,7 @@ module optimizer {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.optimizer.service_name
     image_name              = var.service_config.optimizer.image_name
@@ -274,7 +277,7 @@ module optimizer {
 }
 
 module other {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -288,7 +291,7 @@ module other {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.other.service_name
     image_name              = var.service_config.other.image_name
@@ -297,7 +300,7 @@ module other {
 }
 
 module positions {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -311,7 +314,7 @@ module positions {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.positions.service_name
     image_name              = var.service_config.positions.image_name
@@ -320,7 +323,7 @@ module positions {
 }
 
 module refinitiv_ingestion {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -334,7 +337,7 @@ module refinitiv_ingestion {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.refinitiv_ingestion.service_name
     image_name              = var.service_config.refinitiv_ingestion.image_name
@@ -343,7 +346,7 @@ module refinitiv_ingestion {
 }
 
 module requests {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -357,7 +360,7 @@ module requests {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.requests.service_name
     image_name              = var.service_config.requests.image_name
@@ -366,7 +369,7 @@ module requests {
 }
 
 module sales {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -380,7 +383,7 @@ module sales {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.sales.service_name
     image_name              = var.service_config.sales.image_name
@@ -389,7 +392,7 @@ module sales {
 }
 
 module speech {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -403,7 +406,7 @@ module speech {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.speech.service_name
     image_name              = var.service_config.speech.image_name
@@ -412,7 +415,7 @@ module speech {
 }
 
 module uploader {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.3"
+    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=do-not-create-lb-stuff-if-public-2022-02-21" # "?ref=1.0.3""
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -426,7 +429,7 @@ module uploader {
     ecr_region              = var.ecr_region
     aws_lb_arn              = var.aws_lb_arn
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
-    domain_name             = var.domain_name    
+    domain_name             = var.domain_name
     environment             = var.environment
     service_name            = var.service_config.uploader.service_name
     image_name              = var.service_config.uploader.image_name
