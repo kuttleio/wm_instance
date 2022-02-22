@@ -169,7 +169,7 @@ resource aws_lb_listener public_client_https {
 #    Listener Rules
 # ---------------------------------------------------
 resource aws_lb_listener_rule block_header_server {
-    listener_arn = aws_lb_listener.public_server.arn
+    listener_arn = aws_lb_listener.public_server_http.arn
     priority = 100
 
     condition {
@@ -188,7 +188,7 @@ resource aws_lb_listener_rule block_header_server {
     }
 }
 resource aws_lb_listener_rule block_header_admin {
-    listener_arn = aws_lb_listener.public_admin.arn
+    listener_arn = aws_lb_listener.public_admin_http.arn
     priority = 100
 
     condition {
@@ -207,7 +207,7 @@ resource aws_lb_listener_rule block_header_admin {
     }
 }
 resource aws_lb_listener_rule block_header_client {
-    listener_arn = aws_lb_listener.public_client.arn
+    listener_arn = aws_lb_listener.public_client_http.arn
     priority = 100
 
     condition {
