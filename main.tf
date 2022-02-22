@@ -17,7 +17,7 @@ module ecs_cluster {
 #    Services
 # ---------------------------------------------------
 module server {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.5"
+    source                  = "github.com/zbs-nu/aws_ecs_service_public//?ref=initial-commit-2022-02-22"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -29,7 +29,7 @@ module server {
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
-    aws_lb_arn              = var.aws_lb_arn
+    aws_lb_arn              = aws_lb.public.arn ###
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
@@ -37,12 +37,12 @@ module server {
     service_name            = var.service_config.server.service_name
     image_name              = var.service_config.server.image_name
     image_version           = var.service_config.server.image_version
-    service_port            = var.service_config.server.internal_port
-    aws_lb_out_port         = var.service_config.server.external_port
+    internal_service_port   = var.service_config.server.internal_port
+    external_service_port   = var.service_config.server.external_port
 }
 
 module admin {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.5"
+    source                  = "github.com/zbs-nu/aws_ecs_service_public//?ref=initial-commit-2022-02-22"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -54,7 +54,7 @@ module admin {
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
-    aws_lb_arn              = var.aws_lb_arn
+    aws_lb_arn              = aws_lb.public.arn ###
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
@@ -62,12 +62,12 @@ module admin {
     service_name            = var.service_config.admin.service_name
     image_name              = var.service_config.admin.image_name
     image_version           = var.service_config.admin.image_version
-    service_port            = var.service_config.admin.internal_port
-    aws_lb_out_port         = var.service_config.admin.external_port
+    internal_service_port   = var.service_config.admin.internal_port
+    external_service_port   = var.service_config.admin.external_port
 }
 
 module client {
-    source                  = "github.com/zbs-nu/aws_ecs_service//?ref=1.0.5"
+    source                  = "github.com/zbs-nu/aws_ecs_service_public//?ref=initial-commit-2022-02-22"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -79,7 +79,7 @@ module client {
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
-    aws_lb_arn              = var.aws_lb_arn
+    aws_lb_arn              = aws_lb.public.arn ###
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name    
     environment             = var.environment
@@ -87,9 +87,8 @@ module client {
     service_name            = var.service_config.client.service_name
     image_name              = var.service_config.client.image_name
     image_version           = var.service_config.client.image_version
-    service_port            = var.service_config.client.internal_port
-    aws_lb_out_port         = var.service_config.client.external_port
-
+    internal_service_port   = var.service_config.client.internal_port
+    external_service_port   = var.service_config.client.external_port
 }
 
 module billing {
