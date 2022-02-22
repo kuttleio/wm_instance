@@ -25,7 +25,7 @@ module server {
     wm_instance             = var.wm_instance
     vpc_id                  = var.vpc_id
     security_groups         = var.security_groups
-    subnets                 = var.public_subnets # var.private_subnets
+    subnets                 = var.private_subnets
     logdna_key              = var.logdna_key
     ecr_account_id          = var.account_id
     ecr_region              = var.ecr_region
