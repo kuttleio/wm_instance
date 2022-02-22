@@ -33,7 +33,7 @@ module server {
     aws_lb_certificate_arn  = var.aws_lb_certificate_arn
     domain_name             = var.domain_name
     environment             = var.environment
-    desired_count           = var.desired_count    
+    desired_count           = var.desired_count
     public                  = true
     service_name            = var.service_config.server.service_name
     image_name              = var.service_config.server.image_name
