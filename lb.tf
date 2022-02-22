@@ -1,3 +1,6 @@
+# ---------------------------------------------------
+#    LB (Load Balancer)
+# ---------------------------------------------------
 resource aws_lb public {
     name               = "${var.name_prefix}-${var.wm_instance}-Public-LB"
     load_balancer_type = "application"
@@ -13,7 +16,69 @@ resource aws_lb public {
     tags = merge(var.standard_tags, tomap({ Name = "Public-${var.name_prefix}-${var.wm_instance}" }))
 }
 
-resource aws_lb_listener public_server {
+# ---------------------------------------------------
+#    TG (Target Groups)
+# ---------------------------------------------------
+resource aws_lb_target_group public_server_tg {
+    name                          = "${var.name_prefix}-${var.wm_instance}-${var.service_config.server.service_name}-tg"
+    port                          = var.service_config.server.external_port
+    protocol                      = "HTTP"
+    vpc_id                        = var.vpc_id
+    load_balancing_algorithm_type = "round_robin"
+    target_type                   = "ip"
+    depends_on                    = [aws_lb.public]
+
+    health_check {
+        healthy_threshold   = 3
+        unhealthy_threshold = 10
+        timeout             = 5
+        interval            = 10
+        path                = "/health"
+        port                = var.service_config.server.external_port
+    }
+}
+resource aws_lb_target_group public_admin_tg {
+    name                          = "${var.name_prefix}-${var.wm_instance}-${var.service_config.admin.service_name}-tg"
+    port                          = var.service_config.server.external_port
+    protocol                      = "HTTP"
+    vpc_id                        = var.vpc_id
+    load_balancing_algorithm_type = "round_robin"
+    target_type                   = "ip"
+    depends_on                    = [aws_lb.public]
+
+    health_check {
+        healthy_threshold   = 3
+        unhealthy_threshold = 10
+        timeout             = 5
+        interval            = 10
+        path                = "/health"
+        port                = var.service_config.admin.external_port
+    }
+}
+resource aws_lb_target_group public_client_tg {
+    name                          = "${var.name_prefix}-${var.wm_instance}-${var.service_config.client.service_name}-tg"
+    port                          = var.service_config.server.external_port
+    protocol                      = "HTTP"
+    vpc_id                        = var.vpc_id
+    load_balancing_algorithm_type = "round_robin"
+    target_type                   = "ip"
+    depends_on                    = [aws_lb.public]
+
+    health_check {
+        healthy_threshold   = 3
+        unhealthy_threshold = 10
+        timeout             = 5
+        interval            = 10
+        path                = "/health"
+        port                = var.service_config.client.external_port
+    }
+}
+
+
+# ---------------------------------------------------
+#    Listeners
+# ---------------------------------------------------
+resource aws_lb_listener public_server_http {
     load_balancer_arn = aws_lb.public.arn
     port              = var.service_config.server.internal_port
     protocol          = "HTTP"
@@ -29,6 +94,19 @@ resource aws_lb_listener public_server {
         }
     }
 }
+resource aws_lb_listener public_server_https {
+    load_balancer_arn = aws_lb.public.arn
+    port              = var.service_config.server.external_port
+    protocol          = "HTTPS"
+    ssl_policy        = "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
+    certificate_arn   = var.aws_lb_certificate_arn
+
+    default_action {
+        type             = "forward"
+        target_group_arn = aws_lb_target_group.public_server_tg.arn
+    }
+}
+
 resource aws_lb_listener public_admin {
     load_balancer_arn = aws_lb.public.arn
     port              = var.service_config.admin.internal_port
@@ -45,7 +123,20 @@ resource aws_lb_listener public_admin {
         }
     }
 }
-resource aws_lb_listener public_client {
+resource aws_lb_listener public_admin_https {
+    load_balancer_arn = aws_lb.public.arn
+    port              = var.service_config.admin.external_port
+    protocol          = "HTTPS"
+    ssl_policy        = "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
+    certificate_arn   = var.aws_lb_certificate_arn
+
+    default_action {
+        type             = "forward"
+        target_group_arn = aws_lb_target_group.public_admin_tg.arn
+    }
+}
+
+resource aws_lb_listener public_client_http {
     load_balancer_arn = aws_lb.public.arn
     port              = var.service_config.client.internal_port
     protocol          = "HTTP"
@@ -61,7 +152,22 @@ resource aws_lb_listener public_client {
         }
     }
 }
+resource aws_lb_listener public_client_https {
+    load_balancer_arn = aws_lb.public.arn
+    port              = var.service_config.client.external_port
+    protocol          = "HTTPS"
+    ssl_policy        = "ELBSecurityPolicy-TLS-1-2-Ext-2018-06"
+    certificate_arn   = var.aws_lb_certificate_arn
 
+    default_action {
+        type             = "forward"
+        target_group_arn = aws_lb_target_group.public_client_tg.arn
+    }
+}
+
+# ---------------------------------------------------
+#    Listener Rules
+# ---------------------------------------------------
 resource aws_lb_listener_rule block_header_server {
     listener_arn = aws_lb_listener.public_server.arn
     priority = 100
@@ -120,7 +226,9 @@ resource aws_lb_listener_rule block_header_client {
     }
 }
 
-
+# ---------------------------------------------------
+#    Route53 CNAME Record
+# ---------------------------------------------------
 resource aws_route53_record main {
     zone_id = var.zone_id.zone_id
     name    = "${var.name_prefix}-${var.wm_instance}."
