@@ -37,8 +37,8 @@ module server {
     service_name            = var.service_config.server.service_name
     image_name              = var.service_config.server.image_name
     image_version           = var.service_config.server.image_version
-    internal_service_port   = var.service_config.server.internal_port
-    external_service_port   = var.service_config.server.external_port
+    service_internal_port   = var.service_config.server.internal_port
+    service_external_port   = var.service_config.server.external_port
 }
 
 module admin {
@@ -62,8 +62,8 @@ module admin {
     service_name            = var.service_config.admin.service_name
     image_name              = var.service_config.admin.image_name
     image_version           = var.service_config.admin.image_version
-    internal_service_port   = var.service_config.admin.internal_port
-    external_service_port   = var.service_config.admin.external_port
+    service_internal_port   = var.service_config.admin.internal_port
+    service_external_port   = var.service_config.admin.external_port
 }
 
 module client {
@@ -87,8 +87,8 @@ module client {
     service_name            = var.service_config.client.service_name
     image_name              = var.service_config.client.image_name
     image_version           = var.service_config.client.image_version
-    internal_service_port   = var.service_config.client.internal_port
-    external_service_port   = var.service_config.client.external_port
+    service_internal_port   = var.service_config.client.internal_port
+    service_external_port   = var.service_config.client.external_port
 }
 
 module billing {
