@@ -17,7 +17,7 @@ module ecs_cluster {
 #    Services
 # ---------------------------------------------------
 module server {
-    source                  = "github.com/zbs-nu/aws_ecs_service_public//"
+    source                  = "github.com/zbs-nu/aws_ecs_service_public//?ref=remove-public-listener-and-rule-2022-02-23"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -42,7 +42,7 @@ module server {
 }
 
 module admin {
-    source                  = "github.com/zbs-nu/aws_ecs_service_public//"
+    source                  = "github.com/zbs-nu/aws_ecs_service_public//?ref=remove-public-listener-and-rule-2022-02-23"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
@@ -67,7 +67,7 @@ module admin {
 }
 
 module client {
-    source                  = "github.com/zbs-nu/aws_ecs_service_public//"
+    source                  = "github.com/zbs-nu/aws_ecs_service_public//?ref=remove-public-listener-and-rule-2022-02-23"
     name_prefix             = var.name_prefix
     standard_tags           = var.standard_tags
     cluster_name            = module.ecs_cluster.cluster_name
