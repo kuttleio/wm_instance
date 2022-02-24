@@ -2,15 +2,17 @@
 #    ECS Cluster
 # ---------------------------------------------------
 module ecs_cluster {
-    source                    = "github.com/zbs-nu/aws_ecs_cluster//?ref=1.0.0"
-    cluster_name              = "${var.name_prefix}-${var.wm_instance}"
-    container_insights        = var.container_insights
-    instance_types            = var.instance_types
-    ebs_disks                 = var.ebs_disks
-    key_name                  = var.key_name
-    cluster_sg                = var.cluster_sg
-    ecs_subnet                = var.private_subnets
-    standard_tags             = var.standard_tags
+    source                  = "github.com/zbs-nu/aws_ecs_cluster//?ref=1.0.1"
+    cluster_name            = "${var.name_prefix}-${var.wm_instance}"
+    container_insights      = var.container_insights
+    instance_types          = var.instance_types
+    ebs_disks               = var.ebs_disks
+    key_name                = var.key_name
+    cluster_sg              = var.cluster_sg
+    ecs_subnet              = var.private_subnets
+    standard_tags           = var.standard_tags
+    force_delete            = var.force_delete
+    protect_from_scale_in   = var.protect_from_scale_in
 }
 
 # ---------------------------------------------------
